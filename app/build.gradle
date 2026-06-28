@@ -1,0 +1,24 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "com.sekai.exploit"
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.sekai.exploit"
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+
+        // 可在 GitHub Actions secrets/variables 或本地 gradle 参数里注入：
+        // ./gradlew assembleDebug -PSEKAI_SEED_B64=....
+        buildConfigField "String", "SEKAI_SEED_B64", "\"${project.findProperty('SEKAI_SEED_B64') ?: ''}\""
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
